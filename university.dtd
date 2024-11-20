@@ -1,0 +1,34 @@
+<!ELEMENT University (Course+, TeachingStaff+, Room+, Publication*)>
+
+<!-- Course 定义 -->
+<!ELEMENT Course (CourseID, Name, Credit, Description?)>
+<!ELEMENT CourseID (#PCDATA)> <!-- CourseID 是 Course 的唯一标识符 -->
+<!ELEMENT Name (#PCDATA)>      <!-- Name 是 Course 的名称 -->
+<!ELEMENT Credit (#PCDATA)>    <!-- Credit 是 Course 的学分 -->
+<!ELEMENT Description (#PCDATA)>    <!-- Description 是 Course 的描述 -->
+
+<!-- TeachingStaff 定义 -->
+<!ELEMENT TeachingStaff (StaffID, Name, Title, ResearchArea?)>
+<!ELEMENT StaffID (#PCDATA)>        <!--#PCDATA 是字符数据，可以包含任何字符-->
+<!ELEMENT Title (#PCDATA)>
+<!ELEMENT ResearchArea (#PCDATA)>
+
+<!-- Room 定义 -->
+<!ELEMENT Room (RoomID, Location, Capacity)>
+<!ELEMENT RoomID (#PCDATA)>
+<!ELEMENT Location (#PCDATA)>
+<!ELEMENT Capacity (#PCDATA)>
+
+<!-- Publication 定义 -->
+<!ELEMENT Publication (Title, Author, Year, JournalOrPublisher?)>
+<!ELEMENT Title (#PCDATA)>
+<!ELEMENT Author (#PCDATA)>
+<!ELEMENT Year (#PCDATA)>
+<!ELEMENT JournalOrPublisher (#PCDATA)>
+
+<!-- Course 和 TeachingStaff 之间的关联 -->
+<!ATTLIST Course StaffID IDREF #REQUIRED> <!-- StaffID 是 TeachingStaff 的 StaffID 属性的引用 -->
+<!ATTLIST Course RoomID IDREF #REQUIRED> <!-- RoomID 是 Room 的 RoomID 属性的引用 -->
+
+<!-- TeachingStaff 和 Publication 之间的关联 -->
+<!ATTLIST TeachingStaff PublicationID IDREF #IMPLIED> <!-- PublicationID 是 Publication 的 PublicationID 属性的引用 -->
